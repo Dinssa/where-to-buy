@@ -30,21 +30,25 @@ passport.use(new GoogleStrategy(
 ));
 
 passport.use(new LocalStrategy(
-    async function(username, password, cb) {
-      try {
-        let user = await User.findOne({ username: username });
-        if (!user) {
-          return cb(null, false);
-        }
-        if (!user.validPassword(password)) {
-          return cb(null, false);
-        }
-        return cb(null, user);
-      } catch (err) {
-        return cb(err);
+  {
+    usernameField: 'email',
+    passwordField: 'password'
+  },
+  async function(email, password, cb) {
+    try {
+      let user = await User.findOne({ email });
+      if (!user) {
+        return cb(null, false);
       }
+      if (!user.validPassword(password)) {
+        return cb(null, false);
+      }
+      return cb(null, user);
+    } catch (err) {
+      return cb(err);
     }
-  ));
+  }
+));
 
 passport.serializeUser(function(user, cb) {
     cb(null, user._id);  

@@ -21,4 +21,8 @@ const userSchema = new Schema({
     timestamps: true
 });
 
+userSchema.methods.validPassword = function(password) {
+  return password === this.password; // TODO: implement hashed passwords, including editing seed.js
+}
+
 module.exports = mongoose.model('User', userSchema);
