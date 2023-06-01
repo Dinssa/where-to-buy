@@ -3,7 +3,7 @@
 // Why build this? To populate the database with seed data to ease development and testing
 
 // Number of users, listings and reviews to create
-const numOfUsers = process.argv[2] ? parseInt(process.argv[2]) : 20; // Accepts a command line argument for the number of users to create (default 20)
+const numOfUsers = parseInt(process.argv[2]) || 20; // Accepts a command line argument for the number of users to create (default 20)
 const numOfListings = Math.round (numOfUsers * (1 + 50/100)); // Number of listings is 50% more than the number of users
 const numOfReviews = Math.round (numOfListings * (1 + 150/100)); // Number of reviews is 150% more than the number of listings
 
