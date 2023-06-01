@@ -1,0 +1,18 @@
+<%- include('./partials/header') %>
+<%- include('./partials/nav') %>
+
+<form action="/login" method="POST">
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email" required>
+  
+    <label for="password">Password:</label>
+    <input type="password" id="password" name="password" required>
+  
+    <button type="submit">Log in</button>
+</form>
+
+<h3> or </h3>
+
+<a href="/auth/google" class="login">Log in with Google</a>
+
+<%- include('./partials/footer') %>

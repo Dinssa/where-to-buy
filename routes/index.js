@@ -7,6 +7,11 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
 });
 
+// Get login page
+router.get('/login', function(req, res, next) {
+  res.render('login', { title: 'Login' });
+});
+
 // Google OAuth login route
 router.get('/auth/google', passport.authenticate(
   'google',
