@@ -12,6 +12,12 @@ router.get('/login', function(req, res, next) {
   res.render('login', { title: 'Login' });
 });
 
+// Post login page
+router.post('/login', passport.authenticate('local', {
+  successRedirect: '/',
+  failureRedirect: '/login'
+}));
+
 // Google OAuth login route
 router.get('/auth/google', passport.authenticate(
   'google',

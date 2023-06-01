@@ -1,5 +1,6 @@
 const passport = require('passport');
 const GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
+const LocalStrategy = require('passport-local').Strategy;
 const User = require('../models/user');
 
 passport.use(new GoogleStrategy(
@@ -27,6 +28,23 @@ passport.use(new GoogleStrategy(
         }
     }
 ));
+
+passport.use(new LocalStrategy(
+    async function(username, password, cb) {
+      try {
+        let user = await User.findOne({ username: username });
+        if (!user) {
+          return cb(null, false);
+        }
+        if (!user.validPassword(password)) {
+          return cb(null, false);
+        }
+        return cb(null, user);
+      } catch (err) {
+        return cb(err);
+      }
+    }
+  ));
 
 passport.serializeUser(function(user, cb) {
     cb(null, user._id);  
