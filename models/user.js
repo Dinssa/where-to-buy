@@ -8,9 +8,13 @@ const userSchema = new Schema({
       required: true
     },
     email: String,
-    avatar: String
+    avatar: String,
+    bookmarks: [{
+      type: Schema.Types.ObjectId,
+      ref: 'Listing'
+    }]
   }, {
     timestamps: true
-  });
+});
 
 module.exports = mongoose.model('User', userSchema);
