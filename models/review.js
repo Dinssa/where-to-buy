@@ -2,12 +2,12 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const reviewSchema = new Schema({
-    listing : {
+    listingId : {
         type: Schema.Types.ObjectId,
         ref: 'Listing',
         required: true
     },
-    user : {
+    userId : {
         type: Schema.Types.ObjectId,
         ref: 'User',
         required: true
@@ -19,7 +19,7 @@ const reviewSchema = new Schema({
         max: 5,
         default: 5
     },
-    helpedUsers: [{
+    helpedUsersIds: [{
         type: Schema.Types.ObjectId,
         ref: 'User'
     }]
