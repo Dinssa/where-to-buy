@@ -1,7 +1,18 @@
 <%- include('./partials/header') %>
 <%- include('./partials/nav') %>
-    
-<h1><%= title %></h1>
-<p>Welcome to <%= title %></p>
+
+<div class="wrapper">
+    <section class="main-search">
+        <h1>Find you local listing</h1>
+        <h3>Search for local stores and find out what others think</h3>
+        <form action="/search" method="GET">
+            <div class="input-group">
+                <input type="text" name="search" class="form-control" placeholder="e.g. 'Acton', 'SW1', 'SW1 4IJ', 'Downing Street'">
+                <button type="submit" class="btn btn-primary">Search</button>
+            </div>
+        </form>
+        <button class="btn btn-primary">Use my location</button>
+    </section>
+</div>    
 
 <%- include('./partials/footer') %>
