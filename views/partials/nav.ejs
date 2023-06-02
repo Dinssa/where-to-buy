@@ -1,7 +1,25 @@
-<nav>
-    <% if (user) { %>
-      <a href="/logout">LOG OUT</a>
-    <% } else { %>
-      <a href="/login" class="login">LOG IN</a>
-    <% } %>
+<nav class="navbar main">
+    <a href="/listing/new" class="btn btn-primary">Contribute</a>
+
+    <a href="/" class="navbar-brand">Where To Buy</a>
+
+    <div class="nav-right">
+      <% if (user) { %>
+        <a href="/account/bookmarks" class="btn btn-outline-secondary">Bookmarks</a>
+        <span class="navbar-text"><%= user.name %></span>
+        <img src="<%= user.avatar %>" alt="avatar" class="avatar"/>
+        <span class="dropdown">
+          <a href="#" class="btn dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">Account</a>
+          <ul class="dropdown-menu">
+            <li><a href="/account" class="dropdown-item">Profile</a></li>
+            <li><a href="/account/listings" class="dropdown-item">Listings</a></li>
+            <li><a href="/account/reviews" class="dropdown-item">Reviews</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a href="/logout" class="dropdown-item">Logout</a></li>
+          </ul>
+        </span>
+      <% } else { %>
+        <a href="/login" class="btn btn-secondary login">LOGIN / REGISTER</a>
+      <% } %>
+    </div>
 </nav>
