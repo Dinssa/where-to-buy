@@ -1,0 +1,14 @@
+// node-sass bootstrap.scss ../public/stylesheets/bootstrap.css
+
+$theme-colors: (
+  "primary": #5DFF8A,
+  "secondary": #BBFBDC,
+  "success": #28A745,
+  "info": #17A2B8,
+  "warning": #FFC107,
+  "danger": #DC3545,
+  "light": #F8F9FA,
+  "dark": #343A40
+);
+
+@import "../node_modules/bootstrap/scss/bootstrap";
