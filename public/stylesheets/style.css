@@ -29,6 +29,10 @@ a {
   margin-right: 5px;
 }
 
+.dropdown-toggle{
+  border: 0;
+}
+
 .wrapper {
   display: flex;
   flex-direction: column;
