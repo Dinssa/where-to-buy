@@ -1,18 +1,33 @@
 <%- include('./partials/header') %>
 <%- include('./partials/nav') %>
 
-<form action="/login" method="POST">
-    <label for="email">Email:</label>
-    <input type="email" id="email" name="email" required>
-  
-    <label for="password">Password:</label>
-    <input type="password" id="password" name="password" required>
-  
-    <button type="submit">Log in</button>
-</form>
+<div class="wrapper">
+    <section class="login">        
+        <form action="/login" method="POST">
+            <div class="mb-4">
+                <h1>Login</h1>
+            </div>
+            <div class="mb-4">
+                <label for="email" class="form-label">Email:</label>
+                <input type="email" id="email" name="email" class="form-control" required>
+            </div>
+            <div class="mb-4">
+                <label for="password"  class="form-label">Password:</label>
+                <input type="password" id="password" name="password" class="form-control" required>
+            </div>          
+            <button type="submit" class="btn btn-secondary btn-block mb-4">Login</button>
+        </form>
 
-<h3> or </h3>
+        <p>Don't have an account? <a href="#" class="link-underline link-underline-opacity-0">Register</a></p>
+        
+        <p> or sign up with: </p>
+        <div>
+            <a href="/auth/google" class="login"><i class="bi bi-google"></i></a>
+            <i class="bi bi-twitter ps-2"></i>
+            <i class="bi bi-facebook ps-2"></i>
+        </div>
 
-<a href="/auth/google" class="login">Log in with Google</a>
+    </section>
+</div>
 
 <%- include('./partials/footer') %>
