@@ -43,7 +43,7 @@ async function index(req, res) {
         listing.distance = calcDistance(listingLocation, searchGeo).toFixed(1);
 
         const listingRating = listingReviews.reduce((acc, review) => acc + review.rating, 0) / listingReviews.length;
-        listing.rating = (!!listingRating) ? listingRating.toFixed(1) : 'N/A';
+        listing.rating = (!!listingRating) ? listingRating.toFixed(1) : 'No reviews yet';
         listing.numReviews = listingReviews.length;
         listing.stars = Math.round(listingRating * 2) / 2;
     });
