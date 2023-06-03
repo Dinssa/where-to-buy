@@ -13,6 +13,14 @@
         </form>
         <h5>or</h5>
         <button class="btn btn-secondary font-btn"><i class="bi bi-geo-alt-fill"></i> Use my location</button>
+        <% if (errorMessages.length != 0) { %>
+            <div class="alert alert-warning" role="alert" aria-live="assertive">
+                <% errorMessages.forEach(function (error) { %>
+                    <i class="bi bi-exclamation-triangle-fill"></i> &nbsp;
+                    <%= error %>
+                <% }) %>
+            </div>
+        <% } %>
     </section>
 </div>    
 
