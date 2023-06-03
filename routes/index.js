@@ -11,9 +11,24 @@ router.get('/', function(req, res, next) {
 });
 
 // Get login page
-router.get('/login', function(req, res, next) {
-  res.render('login', { title: 'Login' });
+router.get('/login', alreadyLoggedIn, function(req, res, next) {
+  let message = null;
+  if (req.query.r) {
+    switch (req.query.r) {
+      case '1': message = 'You must be logged in to view that page'; break;
+      case '2': message = 'Please login or signup to contribute. Thank you!'; break;
+    }
+  }
+  res.render('login', { title: 'Login', message });
 });
+
+function alreadyLoggedIn(req, res, next) {
+  if (req.user) {
+    res.redirect('/');
+  } else {
+    next();
+  }
+}
 
 // Post login page
 router.post('/login', passport.authenticate('local', {
