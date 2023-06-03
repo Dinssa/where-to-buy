@@ -1,7 +1,10 @@
 body {
   padding: 50px;
+  padding-bottom: 10px;
   font: 14px 'Montserrat','Lucida Grande', Helvetica, Arial, sans-serif;
   font-weight: 500;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
 }
 
 html, body {
@@ -14,7 +17,6 @@ html, body {
 
 .navbar.main {
   padding-bottom: 20px;
-  border-bottom: 2px solid #e0e0e0;
 }
 
 .nav-right {
@@ -64,13 +66,12 @@ html, body {
   flex-direction: column;
   justify-items: center;
   align-items: center;
-  height: 100%;
   text-align: center;
 }
 
-section.main-search{
-  width: 70%;
-  height: 60%;
+.wrapper > section{
+  width: 90%;
+  height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
