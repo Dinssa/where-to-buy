@@ -67,6 +67,7 @@ html, body {
   justify-items: center;
   align-items: center;
   text-align: center;
+  max-height: 65vh;
 }
 
 .wrapper > section{
@@ -80,4 +81,62 @@ html, body {
 
 section.main-search > * {
   margin-bottom: 20px;
+}
+
+section.listings-search{
+  flex-direction: row;
+  grid-column: span 2;
+  padding: 20px 0;
+}
+
+.wrapper.listings {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-template-rows: auto 1fr;
+}
+
+.listings-results{
+  max-height: 60vmin;
+  padding: 20px;
+}
+
+select.sort{
+  border-color: #a5fad7;
+  padding: 2px;
+  margin-left: 5px;
+}
+
+article.listing{
+  display: grid;
+  grid-template-columns: 0.6fr 2fr 0.5fr;
+}
+
+article.listing:hover{
+  background-color: #d8fdee;
+  cursor: pointer;
+}
+
+.listing-left, .listing-right{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+}
+
+.listing-middle{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: start;
+  padding: 10px;
+  text-align: left;
+}
+
+
+article > .listing-middle > h3 {
+  color: #5DFF8A;
+  font-weight: 700;
+  letter-spacing: 1px;
+  word-wrap: break-word;
 }

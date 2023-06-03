@@ -15,6 +15,10 @@ const listingSchema = new Schema({
     products: [Object]
   }, {
     timestamps: true
-  });
+});
+
+// listingSchema.methods.distanceTo = function(pointA) {
+//   return ;
+// }
 
 module.exports = mongoose.model('Listing', listingSchema);
