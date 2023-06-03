@@ -2,7 +2,7 @@
 
 $theme-colors: (
   "primary": #5DFF8A,
-  "secondary": #BBFBDC,
+  "secondary": #c5ffe2,
   "success": #28A745,
   "info": #17A2B8,
   "warning": #FFC107,
@@ -10,6 +10,9 @@ $theme-colors: (
   "light": #F8F9FA,
   "dark": #343A40
 );
+
+$btn-border-radius: 0;
+$input-border-radius: 0;
 
 @import "../node_modules/bootstrap/scss/bootstrap";
 @import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css");

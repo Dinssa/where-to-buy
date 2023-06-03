@@ -1,14 +1,21 @@
 <nav class="navbar main">
-    <a href="/listing/new" class="btn btn-primary">Contribute</a>
+    <div class="nav-right">
+      <a href="/" class="navbar-brand"><i class="bi bi-geo-alt-fill"></i> Where To Buy</a>
+      <a href="/listings/new" class="btn btn-primary nav-item font-btn">Contribute</a>
+    </div>
 
-    <a href="/" class="navbar-brand">Where To Buy</a>
+    <div class="nav-middle">
+      
+    </div>
 
     <div class="nav-right">
       <% if (user) { %>
-        <a href="/account/bookmarks" class="btn btn-outline-secondary">Bookmarks</a>
-        <span class="navbar-text"><%= user.name %></span>
-        <img src="<%= user.avatar %>" alt="avatar" class="avatar"/>
-        <span class="dropdown">
+        <a href="/account/bookmarks" class="btn btn-secondary nav-item font-btn"><i class="bi bi-bookmark-fill"></i> Bookmarks</a>
+        <span class="profile nav-item">
+          <span class="navbar-text"><%= user.name %></span>
+          <img src="<%= user.avatar %>" alt="avatar" class="avatar"/>
+        </span>
+        <span class="dropdown nav-item">
           <a href="#" class="btn dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">Account</a>
           <ul class="dropdown-menu" style="right: 0; left: auto;">
             <li><a href="/account" class="dropdown-item">Profile</a></li>

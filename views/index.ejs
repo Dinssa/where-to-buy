@@ -4,14 +4,15 @@
 <div class="wrapper">
     <section class="main-search">
         <h1>Find you local listing</h1>
-        <h3>Search for local stores and find out what others think</h3>
-        <form action="/search" method="GET">
-            <div class="input-group">
-                <input type="text" name="search" class="form-control" placeholder="e.g. 'Acton', 'SW1', 'SW1 4IJ', 'Downing Street'">
-                <button type="submit" class="btn btn-secondary">Search</button>
+        <h4>Search for local stores and find out what others think</h4>
+        <form action="/listings" method="GET">
+            <div class="input-group searchbar">
+                <input type="text" name="search" class="form-control" style="min-width: 200px;" placeholder="e.g. 'Acton', 'SW1 4IJ'">
+                <button type="submit" class="btn btn-secondary"><i class="bi bi-search"></i></button>
             </div>
         </form>
-        <button class="btn btn-secondary">Use my location</button>
+        <h5>or</h5>
+        <button class="btn btn-secondary font-btn"><i class="bi bi-geo-alt-fill"></i> Use my location</button>
     </section>
 </div>    
 
