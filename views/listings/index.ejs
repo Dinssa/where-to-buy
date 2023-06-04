@@ -17,7 +17,8 @@
 <%- include('../partials/nav') %>
 
 <div class="wrapper listings">
-    <section class="listings-search">
+    <section class="listings-search align-items-center">
+        <h4 class="me-3">Search results for...</h4>
         <form action="/listings" method="GET">
             <div class="input-group searchbar">
                 <input type="text" name="search" class="form-control" style="min-width: 200px;" value="<%= searchQuery %>">
@@ -26,7 +27,7 @@
         </form>
         <button class="btn btn-secondary font-btn ms-3"><i class="bi bi-geo-alt-fill"></i> Use my location</button>
     </section>
-    <section class="filter">Filter</section>
+    <section class="filter"></section>
     <section class="listings">
         <form class="mt-4" action="/listings" method="GET">
             <div class="input-group align-items-center">
@@ -42,33 +43,35 @@
         </form>
         <div class="listings-results mt-3 overflow-auto">
             <% listings.forEach(function (listing){ %>
-                <article class="listing">
-                    <div class="listing-left">
-                        <p>
-                            <%= listing.distance %> km
-                        </p>
-                        <p>
-                            <% for (let i = 0; i < Math.floor(listing.stars); i++) { %>
-                                <i class="bi bi-star-fill"></i>
-                            <% } %>
-                            <% if (listing.stars % 1 >= 0.5 && listing.stars % 1 <= 0.9) { %>
-                            <i class="bi bi-star-half"></i>
-                            <% } %>
-                            <% for (let i = 0; i < 5 - Math.ceil(listing.stars); i++) { %>
-                            <i class="bi bi-star"></i>
-                            <% } %>
-                            <%= listing.rating  %> (<%= listing.numReviews  %>)
-                        </p>
-                    </div>
-                    <div class="listing-middle">
-                        <h3><%= listing.title %></h3>
-                        <p><%= listing.subtitle %></p>
-                        <p>Products: X, Y, X</p>
-                    </div>
-                    <div class="listing-right">
-                        <i class="bi bi-arrow-right-square-fill"></i>
-                    </div>
-                </article>
+                <a href="/listings/<%= listing.id %>" class="link-underline link-underline-opacity-0 text-decoration-none text-black">
+                    <article class="listing search">
+                        <div class="listing-left">
+                            <p>
+                                <%= listing.distance %> km
+                            </p>
+                            <p>
+                                <% for (let i = 0; i < Math.floor(listing.stars); i++) { %>
+                                    <i class="bi bi-star-fill"></i>
+                                <% } %>
+                                <% if (listing.stars % 1 >= 0.5 && listing.stars % 1 <= 0.9) { %>
+                                <i class="bi bi-star-half"></i>
+                                <% } %>
+                                <% for (let i = 0; i < 5 - Math.ceil(listing.stars); i++) { %>
+                                <i class="bi bi-star"></i>
+                                <% } %>
+                                <%= listing.rating  %> (<%= listing.numReviews  %>)
+                            </p>
+                        </div>
+                        <div class="listing-middle">
+                            <h3><%= listing.title %></h3>
+                            <p><%= listing.subtitle %></p>
+                            <p>Products: X, Y, X</p>
+                        </div>
+                        <div class="listing-right">
+                            <i class="bi bi-arrow-right-square-fill"></i>
+                        </div>
+                    </article>
+                </a>
             <% }) %>
         </div>
     </section>
