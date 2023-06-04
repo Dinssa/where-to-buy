@@ -18,10 +18,18 @@ function index(req, res) {
 async function bookmarks(req, res) {
     try {
         const user = await User.findById(res.locals.user.id);
-        const bookmarks = await Listing.find({ _id: { $in: user.bookmarks } });
+        const listings = await Listing.find({ _id: { $in: user.bookmarks } });
+        const reviews = await Review.find({});
+        listings.forEach((listing) => {
+            const listingReviews = reviews.filter(review => review.listingId == listing.id);    
+            const listingRating = listingReviews.reduce((acc, review) => acc + review.rating, 0) / listingReviews.length;
+            listing.rating = (!!listingRating) ? listingRating.toFixed(1) : 'No reviews yet';
+            listing.numReviews = listingReviews.length;
+            listing.stars = Math.round(listingRating * 2) / 2;
+        });
         res.render('account/bookmarks', {
             title: 'Bookmarks',
-            bookmarks
+            listings
         });
     } catch (err) {
         console.log(err);
@@ -41,7 +49,7 @@ async function listings(req, res) {
             listing.stars = Math.round(listingRating * 2) / 2;
         });
         res.render('account/listings', {
-            title: 'Listings',
+            title: 'My Listings',
             listings
         });
     } catch (err) {

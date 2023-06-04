@@ -8,6 +8,40 @@
 <%- include('../partials/header') %>
 <%- include('../partials/nav') %>
 
-
+<div class="wrapper listings-account">
+    <h1 class="mb-4"><%= title %> </h1>
+    <section class="filter"></section>
+    <section class="listings">
+        <div class="listings-results mt-3 overflow-auto">
+            <% listings.forEach(function (listing){ %>
+                <article class="listing">
+                    <div class="listing-left">
+                        <p>
+                            <% for (let i = 0; i < Math.floor(listing.stars); i++) { %>
+                                <i class="bi bi-star-fill"></i>
+                            <% } %>
+                            <% if (listing.stars % 1 >= 0.5 && listing.stars % 1 <= 0.9) { %>
+                            <i class="bi bi-star-half"></i>
+                            <% } %>
+                            <% for (let i = 0; i < 5 - Math.ceil(listing.stars); i++) { %>
+                            <i class="bi bi-star"></i>
+                            <% } %>
+                            <%= listing.rating  %> (<%= listing.numReviews  %>)
+                        </p>
+                    </div>
+                    <div class="listing-middle">
+                        <h3><%= listing.title %></h3>
+                        <p><%= listing.subtitle %></p>
+                        <p>Products: X, Y, X</p>
+                    </div>
+                    <div class="listing-right">
+                        <a href="/listings/<%= listing.id %>" class="btn btn-secondary font-btn"><i class="bi bi-box-arrow-up-right"></i> Go to</a>
+                        <a href="#" class="link-danger ms-5 fs-4"><i class="bi bi-bookmark-x-fill"></i></a>
+                    </div>
+                </article>
+            <% }) %>
+        </div>
+    </section>
+</div>
 
 <%- include('../partials/footer') %>
