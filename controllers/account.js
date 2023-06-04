@@ -32,8 +32,14 @@ async function bookmarks(req, res) {
 async function listings(req, res) {
     try {
         const listings = await Listing.find({ userId: res.locals.user.id });
-        console.log(res.locals.user.id);
-        console.log(listings);
+        const reviews = await Review.find({});
+        listings.forEach((listing) => {
+            const listingReviews = reviews.filter(review => review.listingId == listing.id);    
+            const listingRating = listingReviews.reduce((acc, review) => acc + review.rating, 0) / listingReviews.length;
+            listing.rating = (!!listingRating) ? listingRating.toFixed(1) : 'No reviews yet';
+            listing.numReviews = listingReviews.length;
+            listing.stars = Math.round(listingRating * 2) / 2;
+        });
         res.render('account/listings', {
             title: 'Listings',
             listings
