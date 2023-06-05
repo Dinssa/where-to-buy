@@ -9,7 +9,8 @@ module.exports = {
     index,
     show,
     new: newListing,
-    create
+    create,
+    delete: deleteListing
 };
 
 async function index(req, res) {
@@ -76,6 +77,16 @@ async function create(req, res) {
     } catch (err) {
         console.log(err);
         res.redirect('/listings/new');
+    }
+}
+
+async function deleteListing(req, res) {
+    try {
+        await Listing.findByIdAndDelete(req.params.id);
+        res.redirect(`/${req.body.returnTo}`);
+    } catch (err) {
+        console.log(err);
+        res.redirect('/listings');
     }
 }
 
