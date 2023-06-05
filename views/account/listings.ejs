@@ -15,12 +15,12 @@
         <h1 class="title"><%= title %> </h1>
     </div>
     <div class="row mx-3">
-        <section class="filter col"></section>
+        <section class="filter col-auto"></section>
         <section class="listings col-auto container">
             <div class="scrollable row mt-3 p-2 overflow-auto">
                 <% listings.forEach(function (listing){ %>
                     <article class="my-listings container d-flex flex-row">
-                        <div class="col-auto d-flex flex-column justify-content-center align-items-center me-4 p-1 text-center">
+                        <div class="col-2 d-flex flex-column justify-content-center align-items-center me-4 p-1 text-center">
                             <p>
                                 <% for (let i = 0; i < Math.floor(listing.stars); i++) { %>
                                     <i class="bi bi-star-fill"></i>
@@ -32,7 +32,11 @@
                                 <i class="bi bi-star"></i>
                                 <% } %>
                                 <br>
-                                <%= listing.rating  %> (<%= listing.numReviews  %>)
+                                <% if (listing.numReviews === 0) {  %>
+                                    No Reviews
+                                <% } else { %>
+                                    <%= listing.rating  %> (<%= listing.numReviews  %>)
+                                <% } %>
                             </p>
                         </div>
                         <div class="col d-flex flex-column justify-content-center align-items-start p-1 me-4 text-left">
