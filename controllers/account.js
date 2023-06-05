@@ -61,8 +61,11 @@ async function listings(req, res) {
 async function reviews(req, res) {
     try {
         const reviews = await Review.find({ userId: res.locals.user.id });
-        console.log(res.locals.user.id);
-        console.log(reviews);
+        const listings = await Listing.find({});
+        reviews.forEach((review) => {
+            const listing = listings.find(listing => listing.id == review.listingId);
+            review.listingTitle = listing.title;
+        });
         res.render('account/reviews', {
             title: 'Reviews',
             reviews
