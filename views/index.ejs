@@ -18,16 +18,18 @@
         </div>
         <div class="text-center">
             <h5 class="mb-3">or</h5>
-            <a href="#" class="col-auto btn btn-secondary font-btn"><i class="bi bi-list-ul"></i> Browse all listings</a>
+            <a href="/listings" class="col-auto btn btn-secondary font-btn"><i class="bi bi-list-ul"></i> Browse all listings</a>
         </div>
-        <% if (errorMessages.length != 0) { %>
-            <div class="alert alert-warning" role="alert" aria-live="assertive">
-                <% errorMessages.forEach(function (error) { %>
-                    <i class="bi bi-exclamation-triangle-fill"></i> &nbsp;
-                    <%= error %>
-                <% }) %>
-            </div>
-        <% } %>
+        <div class="mt-4">
+            <% if (errorMessages.length != 0) { %>
+                <div class="alert alert-warning" role="alert" aria-live="assertive">
+                    <% errorMessages.forEach(function (error) { %>
+                        <i class="bi bi-exclamation-triangle-fill"></i> &nbsp;
+                        <%= error %>
+                    <% }) %>
+                </div>
+            <% } %>
+        </div>
     </section>
 </div>    
 

@@ -13,61 +13,44 @@ module.exports = {
 };
 
 async function index(req, res) {
-    const listings = await Listing.find({});
+    let listings = await Listing.find({});
     const reviews = await Review.find({});
     const locations = await Location.find({});
+
     const searchQuery = req.query.search;
     const sortBy = req.query['sort-by'];
-    const searchGeo = await geocodeAddress(searchQuery);
-    console.log(searchGeo);
 
-    listings.forEach((listing) => {
-        const listingLocation = locations.find(location => location.listingId == listing.id);
-        const listingReviews = reviews.filter(review => review.listingId == listing.id);
+    listings = addReviewData(listings, reviews);
 
-        // * Haversine Forumla (calculate the distance between two points on Earth): https://en.wikipedia.org/wiki/Haversine_formula
-        function calcDistance(listingLocation, searchGeo) {
-            const R = 6371e3; // Earth's radius in meters
-            const φ1 = listingLocation.latitude * Math.PI/180; // Convert latitude to radians
-            const φ2 = searchGeo.lat * Math.PI/180; // Convert latitude to radians
-            const Δφ = (searchGeo.lat - listingLocation.latitude) * Math.PI/180; // Convert latitude difference to radians
-            const Δλ = (searchGeo.lng - listingLocation.longitude) * Math.PI/180; // Convert longitude difference to radians
-    
-            const a = Math.sin(Δφ/2) * Math.sin(Δφ/2) +
-                    Math.cos(φ1) * Math.cos(φ2) *
-                    Math.sin(Δλ/2) * Math.sin(Δλ/2);
-            const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
-    
-            return (R * c)/1000;
-        }
-        listing.distance = calcDistance(listingLocation, searchGeo).toFixed(1);
-
-        const listingRating = listingReviews.reduce((acc, review) => acc + review.rating, 0) / listingReviews.length;
-        listing.rating = (!!listingRating) ? listingRating.toFixed(1) : 'No reviews yet';
-        listing.numReviews = listingReviews.length;
-        listing.stars = Math.round(listingRating * 2) / 2;
-    });
-
-    if (sortBy == 'distance') {
-        listings.sort((a, b) => a.distance - b.distance);
-    } else if (sortBy == 'ratings') {
-        listings.sort((a, b) => b.rating - a.rating);
-    }
-
-    if (!searchGeo) {
-        res.render('index', {
-            title: 'Home',
-            errorMessages: ['Invalid search location']
-        });
-    } else {
+    if (searchQuery == '' || !searchQuery) {
         res.render('listings/index', {
             title: 'Listings',
             listings,
             searchQuery,
-            sortBy,
-            searchGeo
+            sortBy
         });
+        return;
     }
+
+    const searchGeo = await geocodeAddress(searchQuery);
+
+    if (!searchGeo){
+        res.render('index', {
+            title: 'Home',
+            errorMessages: ['Invalid search location']
+        });
+        return;
+    }
+
+    listings = calcDistance(listings, locations, searchGeo);
+    listings = sortListings(listings, sortBy);
+
+    res.render('listings/index', {
+        title: 'Listings',
+        listings,
+        searchQuery,
+        sortBy        
+    });    
 }
 
 async function show(req, res) {
@@ -94,6 +77,51 @@ async function create(req, res) {
         console.log(err);
         res.redirect('/listings/new');
     }
+}
+
+function sortListings(listings, sortBy) {
+    switch (sortBy) {
+        case 'distance':
+            return listings.sort((a, b) => a.distance - b.distance);
+        case 'ratings':
+            return listings.sort((a, b) => b.rating - a.rating);
+        case 'best-match':
+            return listings // TODO: Implement best match sorting
+        default:
+            return listings.sort((a, b) => a.distance - b.distance);
+    }
+}
+
+function addReviewData(listings, reviews) {
+    listings.forEach((listing) => {
+        const listingReviews = reviews.filter(review => review.listingId == listing.id);
+        const listingRating = listingReviews.reduce((acc, review) => acc + review.rating, 0) / listingReviews.length;
+        listing.rating = (!!listingRating) ? listingRating.toFixed(1) : 'No reviews yet';
+        listing.numReviews = listingReviews.length;
+        listing.stars = Math.round(listingRating * 2) / 2;
+    });
+    return listings;
+}
+
+function calcDistance(listings, locations, searchGeo) {
+    listings.forEach((listing) => {
+        const listingLocation = locations.find(location => location.listingId == listing.id);
+
+        // * Haversine Forumla (calculate the distance between two points on Earth): https://en.wikipedia.org/wiki/Haversine_formula
+        const R = 6371e3; // Earth's radius in meters
+        const φ1 = listingLocation.latitude * Math.PI/180; // Convert latitude to radians
+        const φ2 = searchGeo.lat * Math.PI/180; // Convert latitude to radians
+        const Δφ = (searchGeo.lat - listingLocation.latitude) * Math.PI/180; // Convert latitude difference to radians
+        const Δλ = (searchGeo.lng - listingLocation.longitude) * Math.PI/180; // Convert longitude difference to radians
+
+        const a = Math.sin(Δφ/2) * Math.sin(Δφ/2) +
+                Math.cos(φ1) * Math.cos(φ2) *
+                Math.sin(Δλ/2) * Math.sin(Δλ/2);
+        const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+
+        listing.distance = ((R * c)/1000).toFixed(1);
+    });
+    return listings;
 }
 
 async function geocodeAddress(address){
