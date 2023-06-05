@@ -6,7 +6,9 @@ module.exports = {
     index,
     bookmarks,
     listings,
-    reviews
+    reviews,
+    deleteListing,
+    deleteReview
 }
 
 function index(req, res) {
@@ -76,3 +78,22 @@ async function reviews(req, res) {
     }
 }
 
+async function deleteListing(req, res) {
+    try {
+        await Listing.findByIdAndDelete(req.params.id);
+        res.redirect(`/${req.body.returnTo}`);
+    } catch (err) {
+        console.log(err);
+        res.redirect('/listings');
+    }
+}
+
+async function deleteReview(req, res) {
+    try {
+        await Review.findByIdAndDelete(req.params.id);
+        res.redirect(`/${req.body.returnTo}`);
+    } catch (err) {
+        console.log(err);
+        res.redirect('/listings');
+    }
+}

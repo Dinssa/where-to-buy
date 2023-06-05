@@ -11,8 +11,6 @@ router.get('/:id', listingsCtrl.show); // GET /listings/:id
 
 router.post('/', listingsCtrl.create); // POST /listings
 
-router.delete('/:id', listingsCtrl.delete); // DELETE /listings/:id
-
 module.exports = router;
 
 function requireLogin(req, res, next) {

@@ -11,6 +11,10 @@ router.get('/listings', requireLogin, accountCtrl.listings); // GET /account/lis
 
 router.get('/reviews', requireLogin, accountCtrl.reviews); // GET /account/reviews
 
+router.delete('/review/:id', accountCtrl.deleteReview); // DELETE /review/:id
+
+router.delete('/listing/:id', accountCtrl.deleteListing); // DELETE /listing/:id
+
 module.exports = router;
 
 function requireLogin(req, res, next) {
