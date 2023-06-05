@@ -43,10 +43,6 @@ html, body {
   border-color: #09FF98;
 }
 
-/* .searchbar > input:focus {
-  box-shadow: 0 0 5px #09FF98;
-} */
-
 .searchbar > button {
   border-color: #09FF98;
   border-left: none;
@@ -61,54 +57,18 @@ html, body {
   border: 0;
 }
 
-.wrapper {
-  display: flex;
-  flex-direction: column;
-  justify-items: center;
-  align-items: center;
-  text-align: center;
-  max-height: 65vh;
+.title {
+  font-weight: 600;
+  letter-spacing: 2px;
+  word-wrap: break-word;
 }
 
-.wrapper > section{
-  width: 90%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+.spacing-1{
+  letter-spacing: 1px;
 }
 
-section.main-search > * {
-  margin-bottom: 20px;
-}
-
-section.listings-search, section.listings-account{
-  flex-direction: row;
-  grid-column: span 2;
-  padding: 20px 0;
-}
-
-.wrapper.listings{
-  display: grid;
-  grid-template-columns: auto 1fr;
-  grid-template-rows: auto 1fr;
-}
-
-.wrapper.listings-account{
-  display: grid;
-  grid-template-columns: auto 1fr;
-  grid-template-rows: 0.3fr 1fr;
-}
-
-.wrapper.listings-account > h1{
-  grid-column: span 2;
-}
-
-.listings-results{
+.scrollable{
   max-height: 50vh;
-  min-width: 90%;
-  padding: 20px;
 }
 
 select.sort{
@@ -117,44 +77,7 @@ select.sort{
   margin-left: 5px;
 }
 
-article.listing{
-  display: grid;
-  grid-template-columns: 0.6fr 2fr 0.5fr;
-}
-
-article.listing.search:hover{
+article.search:hover{
   background-color: #d8fdee;
   cursor: pointer;
-}
-
-.listing-left, .listing-right{
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 10px;
-}
-
-.listing-middle{
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: start;
-  padding: 10px;
-  text-align: left;
-}
-
-
-article > .listing-middle > h3 {
-  color: #5DFF8A;
-  font-weight: 700;
-  letter-spacing: 1px;
-  word-wrap: break-word;
-}
-
-.listings-account > .listings > .listings-results > .listing >  .listing-right{
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
 }

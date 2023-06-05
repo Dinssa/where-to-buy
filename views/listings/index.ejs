@@ -16,65 +16,71 @@
 <%- include('../partials/header') %>
 <%- include('../partials/nav') %>
 
-<div class="wrapper listings">
-    <section class="listings-search align-items-center">
-        <h4 class="me-3">Search results for...</h4>
-        <form action="/listings" method="GET">
+<div class="listings container">
+    <div class="listings-search row row-auto m-3 align-items-center">
+        <h5 class="col-auto">Search results for...</h5>
+        <form class="col" action="/listings" method="GET">
             <div class="input-group searchbar">
                 <input type="text" name="search" class="form-control" style="min-width: 200px;" value="<%= searchQuery %>">
                 <button type="submit" class="btn btn-secondary"><i class="bi bi-search"></i></button>
             </div>
         </form>
-        <button class="btn btn-secondary font-btn ms-3"><i class="bi bi-geo-alt-fill"></i> Use my location</button>
-    </section>
-    <section class="filter"></section>
-    <section class="listings">
-        <form class="mt-4" action="/listings" method="GET">
-            <div class="input-group align-items-center">
-                <input type="hidden" name="search" value="<%= searchQuery %>">
-                <label for="sort-by">SORT &nbsp;</label>
-                <select name="sort-by" id="sort-by" class="sort">
-                    <option <%= sortBy === 'best-match' ? 'selected' : '' %> value="best-match">Best Match</option>
-                    <option <%= sortBy === 'ratings' ? 'selected' : '' %> value="ratings">Avg. Rating</option>
-                    <option <%= sortBy === 'distance' ? 'selected' : '' %> value="distance">Distance</option>
-                </select>
-                <button type="submit" class="btn btn-secondary font-btn ms-2 py-0">Apply</button>
+        <button class="col-auto btn btn-secondary font-btn ms-3"><i class="bi bi-geo-alt-fill"></i> Use my location</button>
+    </div>
+    <div class="row mx-3">
+        <section class="filter col"></section>
+        <section class="listings col-auto container">
+            <div class="row d-flex">
+                <form class="listings-sort row mt-4" action="/listings" method="GET">
+                    <div class="input-group align-items-center justify-content-end">
+                        <input type="hidden" name="search" value="<%= searchQuery %>">
+                        <label for="sort-by">SORT &nbsp;</label>
+                        <select name="sort-by" id="sort-by" class="sort">
+                            <option <%= sortBy === 'best-match' ? 'selected' : '' %> value="best-match">Best Match</option>
+                            <option <%= sortBy === 'ratings' ? 'selected' : '' %> value="ratings">Avg. Rating</option>
+                            <option <%= sortBy === 'distance' ? 'selected' : '' %> value="distance">Distance</option>
+                        </select>
+                        <button type="submit" class="btn btn-secondary font-btn ms-2 py-0">Apply</button>
+                    </div>
+                </form>
             </div>
-        </form>
-        <div class="listings-results mt-3 overflow-auto">
-            <% listings.forEach(function (listing){ %>
-                <a href="/listings/<%= listing.id %>" class="link-underline link-underline-opacity-0 text-decoration-none text-black">
-                    <article class="listing search">
-                        <div class="listing-left">
-                            <p>
-                                <%= listing.distance %> km
-                            </p>
-                            <p>
-                                <% for (let i = 0; i < Math.floor(listing.stars); i++) { %>
-                                    <i class="bi bi-star-fill"></i>
-                                <% } %>
-                                <% if (listing.stars % 1 >= 0.5 && listing.stars % 1 <= 0.9) { %>
-                                <i class="bi bi-star-half"></i>
-                                <% } %>
-                                <% for (let i = 0; i < 5 - Math.ceil(listing.stars); i++) { %>
-                                <i class="bi bi-star"></i>
-                                <% } %>
-                                <%= listing.rating  %> (<%= listing.numReviews  %>)
-                            </p>
-                        </div>
-                        <div class="listing-middle">
-                            <h3><%= listing.title %></h3>
-                            <p><%= listing.subtitle %></p>
-                            <p>Products: X, Y, X</p>
-                        </div>
-                        <div class="listing-right">
-                            <i class="bi bi-arrow-right-square-fill"></i>
-                        </div>
-                    </article>
-                </a>
-            <% }) %>
-        </div>
-    </section>
+            <div class="scrollable row mt-3 p-2 overflow-auto">
+                <% listings.forEach(function (listing){ %>
+                    <a href="/listings/<%= listing.id %>" class="link-underline link-underline-opacity-0 text-decoration-none text-black">
+                        <article class="search container d-flex flex-row">
+                            <div class="col-auto d-flex flex-column justify-content-center align-items-center me-4 p-1 text-center">
+                                <p>
+                                    <%= listing.distance %> km
+                                </p>
+                                <p>
+                                    <% for (let i = 0; i < Math.floor(listing.stars); i++) { %>
+                                        <i class="bi bi-star-fill"></i>
+                                    <% } %>
+                                    <% if (listing.stars % 1 >= 0.5 && listing.stars % 1 <= 0.9) { %>
+                                    <i class="bi bi-star-half"></i>
+                                    <% } %>
+                                    <% for (let i = 0; i < 5 - Math.ceil(listing.stars); i++) { %>
+                                    <i class="bi bi-star"></i>
+                                    <% } %>
+                                    <br>
+                                    <%= listing.rating  %> (<%= listing.numReviews  %>)
+                                </p>
+                            </div>
+                            <div class="col d-flex flex-column justify-content-center align-items-start p-1 me-4 text-left">
+                                <h3 class="row title text-primary fw-bold text-break"><%= listing.title %></h3>
+                                <p class="row fst-italic"><%= listing.subtitle %></p>
+                                <p class="row">Products: X, Y, X</p>
+                            </div>
+                            <div class="col-auto d-flex flex-row justify-content-center align-items-center p-1 text-center">
+                                <i class="bi bi-arrow-right-square-fill"></i> Open
+                            </div>
+                        </article>
+                    </a>
+                <% }) %>
+            </div>
+            <div class="row row-auto"></div>
+        </section>
+    </div>
 </div>
 
 <%- include('../partials/footer') %>
