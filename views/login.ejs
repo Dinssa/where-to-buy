@@ -1,33 +1,43 @@
 <%- include('./partials/header') %>
 <%- include('./partials/nav') %>
 
-<div class="wrapper">
-    <section class="login">
-        <h5 class="pb-4"><%= message %></h5>        
-        <form action="/login" method="POST">
-            <div class="mb-4">
-                <h1>Login</h1>
-            </div>
-            <div class="mb-4">
-                <label for="email" class="form-label">Email:</label>
-                <input type="email" id="email" name="email" class="form-control" required>
-            </div>
-            <div class="mb-4">
-                <label for="password"  class="form-label">Password:</label>
-                <input type="password" id="password" name="password" class="form-control" required>
-            </div>          
-            <button type="submit" class="btn btn-secondary btn-block mb-4">Login</button>
-        </form>
-
-        <p>Don't have an account? <a href="#" class="link-underline link-underline-opacity-0">Register</a></p>
-        
-        <p> or sign up with: </p>
-        <div>
-            <a href="/auth/google" class="login"><i class="bi bi-google"></i></a>
-            <i class="bi bi-twitter ps-2"></i>
-            <i class="bi bi-facebook ps-2"></i>
+<div class="login d-flex flex-column justify-content-center align-items-center mb-5">
+    <section class="login container">
+        <div class="row text-center">
+            <h5 class="pb-4"><%= message %></h5>        
         </div>
-
+        <div class="row align-items-center">
+            <form action="/login" method="POST">
+                <div class="mb-4 text-center">
+                    <h1>Login</h1>
+                </div>
+                <div class="mb-4 d-flex justify-content-center">
+                    <div class="col-6">
+                        <label for="email" class="form-label">Email:</label>
+                        <input type="email" id="email" name="email" class="form-control" required>
+                    </div>
+                </div>
+                <div class="mb-4 d-flex justify-content-center">
+                    <div class="col-6">
+                        <label for="password"  class="form-label">Password:</label>
+                        <input type="password" id="password" name="password" class="form-control" required>
+                    </div>
+                </div>
+                <div class="mb-4 d-flex justify-content-center">
+                    <button type="submit" class="btn btn-secondary btn-block mb-4 col-2">Login</button>
+                </div>          
+            </form>
+        </div>
+        <div class="row text-center">
+            <p>Don't have an account? <a href="#" class="link-underline link-underline-opacity-0">Register</a></p>
+        
+            <p> or sign up with: </p>
+            <div>
+                <a href="/auth/google" class="login"><i class="bi bi-google"></i></a>
+                <i class="bi bi-twitter ps-2"></i>
+                <i class="bi bi-facebook ps-2"></i>
+            </div>
+        </div>
     </section>
 </div>
 
