@@ -48,10 +48,12 @@
                 <% listings.forEach(function (listing){ %>
                     <a href="/listings/<%= listing.id %>" class="link-underline link-underline-opacity-0 text-decoration-none text-black">
                         <article class="search container d-flex flex-row">
-                            <div class="col-auto d-flex flex-column justify-content-center align-items-center me-4 p-1 text-center">
-                                <p>
-                                    <%= listing.distance %> km
-                                </p>
+                            <div class="col-2 d-flex flex-column justify-content-center align-items-center me-4 p-1 text-center">
+                                <% if (listing.distance) {  %>
+                                    <p>
+                                        <%= listing.distance %> km
+                                    </p>
+                                <% } %>
                                 <p>
                                     <% for (let i = 0; i < Math.floor(listing.stars); i++) { %>
                                         <i class="bi bi-star-fill"></i>
@@ -63,7 +65,11 @@
                                     <i class="bi bi-star"></i>
                                     <% } %>
                                     <br>
-                                    <%= listing.rating  %> (<%= listing.numReviews  %>)
+                                    <% if (listing.numReviews === 0) {  %>
+                                        No Reviews
+                                    <% } else { %>
+                                        <%= listing.rating  %> (<%= listing.numReviews  %>)
+                                    <% } %>
                                 </p>
                             </div>
                             <div class="col d-flex flex-column justify-content-center align-items-start p-1 me-4 text-left">
@@ -72,7 +78,7 @@
                                 <p class="row">Products: X, Y, X</p>
                             </div>
                             <div class="col-auto d-flex flex-row justify-content-center align-items-center p-1 text-center">
-                                <i class="bi bi-arrow-right-square-fill"></i> Open
+                                <i class="bi bi-arrow-right-square-fill"></i>
                             </div>
                         </article>
                     </a>
