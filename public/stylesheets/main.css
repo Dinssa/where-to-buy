@@ -69,6 +69,22 @@ html, body {
 
 .scrollable{
   max-height: 50vh;
+  overflow: auto;
+}
+
+.tab.scrollable{
+  max-height: 40vh;
+  overflow: auto;
+}
+
+.products.scrollable{
+  max-height: 20vh;
+  overflow: auto;
+}
+
+.reviews.scrollable{
+  max-height: 30vh;
+  overflow: auto;
 }
 
 select.sort{
@@ -80,4 +96,20 @@ select.sort{
 article.search:hover{
   background-color: #d8fdee;
   cursor: pointer;
+}
+
+.tab {
+  display: none;
+}
+
+.tab.active {
+  display: block;
+}
+
+.controls, .step {
+  visibility: visible;
+}
+
+.controls.hidden, .step.hidden{
+  visibility: hidden;
 }

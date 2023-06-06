@@ -69,9 +69,35 @@ function newListing(req, res) {
 }
 
 async function create(req, res) {
-    const listing = new Listing(req.body);
+    console.log(req.body);
+
+    const products = [];
+    const operationHours = [];
+
+    for (let i = 1; i <= req.body.productCount; i++) {
+        products.push({ 
+            name : req.body[`productName${i}`], 
+            weight : req.body[`productWeight${i}`], 
+            price : req.body[`productPrice${i}`] 
+        });   
+    }
+    
+    const listing = new Listing({
+        userId: req.body.userId,
+        title: req.body.title,
+        subtitle: req.body.subtitle,
+        description: req.body.description,
+        phoneNumber: req.body.phoneNumber,
+    });
+    
+    const listingLocation = await geocodeAddress(listing.address) || { lat: 51.5048, lng: -0.1235 }; // Default to Trafalgar Square if address is invalid
+
+    const location = new Location({ listingId: listing._id, address: listing.address, latitude: listingLocation.lat, longitude: listingLocation.lng });
+    await location.save();
+
     try {
         await listing.save();
+        await location.save();
         res.redirect(`/listings/${listing._id}`);
     } catch (err) {
         console.log(err);
