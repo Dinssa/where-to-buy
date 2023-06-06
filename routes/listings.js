@@ -9,7 +9,7 @@ router.get('/new', requireLogin, listingsCtrl.new); // GET /listings/new
 
 router.get('/:id', listingsCtrl.show); // GET /listings/:id
 
-router.post('/', listingsCtrl.create); // POST /listings
+router.post('/', requireLogin, listingsCtrl.create); // POST /listings
 
 router.get('/edit/:id', listingsCtrl.edit); // GET /listings/edit/:id
 

@@ -77,24 +77,43 @@ function newListing(req, res) {
 }
 
 async function editListing(req, res) {
-    const listing = await Listing.findById(req.params.id);
-    // console.log(req.params.id);
-    // console.log(listing);
-    res.render('listings/edit', {
-        title: 'Edit Listing',
-        listing
-    });
+    try {
+        const listing = await Listing.findById(req.params.id);
+
+        // Check if the user owns the listing
+        if (listing.userId.toString() !== res.locals.user.id){
+            return res.redirect('/account/listings');
+        }
+
+        res.render('listings/edit', {
+            title: 'Edit Listing',
+            listing
+        });
+    } catch (err) {
+        console.log(err);
+        res.redirect('/'); // 404
+    }
 }
 
 async function updateListing(req, res) {
-    const listing = await Listing.findById(req.params.id);
-    console.log(req.body);
-    listing.title = req.body.title;
-    listing.subtitle = req.body.subtitle;
-    listing.description = req.body.description;
-    listing.phoneNumber = req.body.phoneNumber;
-    await listing.save();
-    res.redirect(`/listings/${listing._id}`);
+    try {
+        const listing = await Listing.findById(req.params.id);
+
+        // Check if the user owns the listing
+        if (listing.userId.toString() !== res.locals.user.id){
+            return res.redirect('/account/listings');
+        }
+
+        listing.title = req.body.title;
+        listing.subtitle = req.body.subtitle;
+        listing.description = req.body.description;
+        listing.phoneNumber = req.body.phoneNumber;
+        await listing.save();
+        res.redirect(`/listings/${listing._id}`);
+    } catch (err) {
+        console.log(err);
+        res.redirect('/'); // 404
+    }
 }
 
 async function create(req, res) {

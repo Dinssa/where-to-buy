@@ -8,8 +8,7 @@ module.exports = {
     listings,
     reviews,
     deleteListing,
-    deleteReview,
-    updateListing
+    deleteReview
 }
 
 function index(req, res) {
@@ -80,6 +79,13 @@ async function reviews(req, res) {
 }
 
 async function deleteListing(req, res) {
+
+    // Check if the user owns the listing
+    const listing = await Listing.findById(req.params.id);
+    if (listing.userId.toString() !== res.locals.user.id){
+        return res.redirect('/account/listings');
+    }
+
     try {
         await Listing.findByIdAndDelete(req.params.id);
         res.redirect(`/${req.body.returnTo}`);
@@ -90,24 +96,16 @@ async function deleteListing(req, res) {
 }
 
 async function deleteReview(req, res) {
+
+    // Check if the user owns the review
+    const review = await Review.findById(req.params.id);
+    if (review.userId.toString() !== res.locals.user.id){
+        return res.redirect('/account/reviews');
+    }
+
     try {
         await Review.findByIdAndDelete(req.params.id);
         res.redirect(`/${req.body.returnTo}`);
-    } catch (err) {
-        console.log(err);
-        res.redirect('/listings');
-    }
-}
-
-async function updateListing(req, res) {
-    try {
-        const listing = await Listing.findById(req.params.id);
-        listing.title = req.body.title;
-        listing.subtitle = req.body.subtitle;
-        listing.description = req.body.description;
-        listing.phoneNumber = req.body.phoneNumber;
-        await listing.save();
-        res.redirect(`/listings/${listing._id}`);
     } catch (err) {
         console.log(err);
         res.redirect('/listings');
