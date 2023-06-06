@@ -19,6 +19,276 @@
 <%- include('../partials/header') %>
 <%- include('../partials/nav') %>
 
+<div class="listing container">
+    <div class="row mx-3 container">
+        <!-- <div class="map col-auto">
+            <div class="row">
+                Map &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                Bottom
+            </div>
+        </div> -->
+        <div class="listing col container me-1">
+            <div class="row mt-3 p-2 overflow-auto">
+                <div class="container">
+                    <!-- <div class="row">
+                        <div class="col-auto mx-1">
+                            Listing Distance
+                        </div>
+                        <div class="col"></div>
+                        <div class="col-auto">
+                            Verified
+                        </div>
+                    </div> -->
+                    <div class="row">
+                        <div class="row  mx-1">
+                            <h3 class="row title text-primary fw-bold text-break"><%= listing.title %></h3>
+                        </div>
+                        <div class="row mx-1">
+                            <p class="row fst-italic "><%= listing.subtitle %></p>
+                        </div>
+                    </div>
+                    <!-- <div class="row">
+                        <div class="col mx-1">
+                            Image, show default if not available
+                            <br>
+                            <br>
+                            <br>
+                            <br>
+                            <br>
+                            <br>
+                            <br>
+                        </div>
+                        <div class="col">
+                            <div class="row">
+                                Products
+                            </div>
+                            <div class="row products scrollable">
+                                <div class="col">Name</div>
+                                <div class="col">Weight</div>
+                                <div class="col">Price</div>
+                            </div>
+                        </div>
+                    </div> -->
+                    <div class="row">
+                        <span class="fw-bold mx-1">Description</span>
+                        <span class="mx-1"><%= listing.description %></p>
+                    </div>
+                    <div class="row">
+                        <div class="col-auto d-flex flex-column">
+                            <div class="row fw-bold mx-1">Details</div>
+                            <div class="row mx-1 p-1">
+                                <div class="col-auto">
+                                    <i class="bi bi-telephone-fill"></i>
+                                </div>
+                                <div class="col">
+                                    <%= listing.phoneNumber %>
+                                </div>
+                            </div>
+                            <div class="row mx-1 p-1">
+                                <div class="col-auto">
+                                    <i class="bi bi-clock"></i>
+                                </div>
+                                <div class="col-auto">
+                                    <span>Operating hours:</span>
+                                </div>
+                            </div>
+                            <div class="row mx-1 px-1">
+                                <div class="col-4 text-muted">
+                                    Mon
+                                </div>
+                                <div class="col-auto">
+                                    <span>9:00 - 15:00</span>
+                                </div>
+                            </div>
+                            <div class="row mx-1 px-1">
+                                <div class="col-4 text-muted">
+                                    Tue
+                                </div>
+                                <div class="col-auto">
+                                    <span>9:00 - 15:00</span>
+                                </div>
+                            </div>
+                            <div class="row mx-1 px-1">
+                                <div class="col-4 text-muted">
+                                    Wed
+                                </div>
+                                <div class="col-auto">
+                                    <span>9:00 - 15:00</span>
+                                </div>
+                            </div>
+                            <div class="row mx-1 px-1">
+                                <div class="col-4 text-muted">
+                                    Thur
+                                </div>
+                                <div class="col-auto">
+                                    <span>9:00 - 13:00</span>
+                                </div>
+                            </div>
+                            <div class="row mx-1 px-1">
+                                <div class="col-4 text-muted">
+                                    Fri
+                                </div>
+                                <div class="col-auto">
+                                    <span>9:00 - 13:00</span>
+                                </div>
+                            </div>
+                            <div class="row mx-1 px-1">
+                                <div class="col-4 text-muted">
+                                    Sat
+                                </div>
+                                <div class="col-auto">
+                                    <span>10:00 - 13:00</span>
+                                </div>
+                            </div>
+                            <div class="row mx-1 px-1">
+                                <div class="col-4 text-muted">
+                                    Sun
+                                </div>
+                                <div class="col-auto">
+                                    <span>Closed</span>
+                                </div>
+                            </div>
+                            <div class="row"></div>
+                            <!-- <div class="row mt-5 mx-1">
+                                <button class="btn btn-outline-danger col-auto" style="font-size: 12px;">Report</button>
+                            </div> -->
+                        </div>
+                        <div class="col border border-secondary">
+                            <div class="row bg-primary text-white py-2">
+                                <div class="col title">
+                                    Reviews
+                                </div>
+                                <div class="col d-flex justify-content-end">
+                                    <span class="me-1">Average Rating</span>
+                                    <span>
+                                        <% for (let i = 0; i < Math.floor(listing.stars); i++) { %>
+                                            <i class="bi bi-star-fill"></i>
+                                        <% } %>
+                                        <% if (listing.stars % 1 >= 0.5 && listing.stars % 1 <= 0.9) { %>
+                                        <i class="bi bi-star-half"></i>
+                                        <% } %>
+                                        <% for (let i = 0; i < 5 - Math.ceil(listing.stars); i++) { %>
+                                        <i class="bi bi-star"></i>
+                                        <% } %>
+                                        
+                                        <% if (listing.numReviews === 0) {  %>
+                                            No Reviews
+                                        <% } else { %>
+                                            <%= listing.rating  %> (<%= listing.numReviews  %>)
+                                        <% } %>
+                                    </span>
+                                </div>
+                            </div>
+                            <!-- <% if(user && user.id != listing.userId){ %>
+                                <div class="row user-review bg-secondary p-2">
+                                    <form action="">
+                                        <div class="col form-group">
+                                            <label for="comment" class="">Comment</label>
+                                            <textarea name="comment" id="comment" cols="10" rows="3" class="form-control"></textarea>
+                                        </div>
+                                        <div class="col">
+                                            <div class="row">
+                                                <div class="col-auto">
+                                                    <span>Rating</span>
+                                                </div>
+                                                <div class="col-auto">
+                                                    <select name="rating" id="rating">
+                                                        <option value="1">1 Star</option>
+                                                        <option value="2">2 Stars</option>
+                                                        <option value="3">3 Stars</option>
+                                                        <option value="4">4 Stars</option>
+                                                        <option value="5">5 Stars</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-auto">
+                                                    <button class="btn btn-primary" id="submit-review">Submit</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>                                    
+                                </div>
+                            <% } %> -->
+                            <div class="row reviews scrollable">
+                                <% if (reviews.length === 0) { %>
+                                    <div class="col">
+                                        <div class="d-flex justify-content-center">
+                                            <div class="my-5">No Reviews Yet</div>
+                                            <% user.id %>
+                                        </div>
+                                    </div>
+                                <%  } %>
 
+                                <% reviews.forEach(function (review) { %>
+                                    <article class="review container border-bottom">
+                                        <div class="row">
+                                            <div class="col-auto pt-2">
+                                                <span>
+                                                    <% for (let i = 0; i < Math.floor(review.rating); i++) { %>
+                                                        <i class="bi bi-star-fill"></i>
+                                                    <% } %>
+                                                    <% for (let i = 0; i < 5 - Math.ceil(review.rating); i++) { %>
+                                                    <i class="bi bi-star"></i>
+                                                    <% } %>
+                                                </span>
+                                            </div>
+                                            <div class="col"></div>
+                                            <div class="col-auto">
+                                                <%= review.author %>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <p class="col"><%= review.comment %></p>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-auto">
+                                                <%= review.helpedUsersIds.length %> helped
+                                            </div>
+                                            <div class="col"></div>
+                                            <div class="col-auto">
+                                                <span class="fw-bold">Helpful?</span>
+                                                <span class="helpful">Yes</span>
+                                                <span class="helpful">No</span>
+                                            </div>
+                                        </div>
+                                    </article>
+                                <% }) %>
+                            </div>
+                        </div>
+                    </div>
+                </div>  
+            </div>
+            <div class="row row-auto"></div>
+        </div>
+    </div>
+</div>
 
 <%- include('../partials/footer') %>

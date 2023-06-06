@@ -1,6 +1,7 @@
 const Listing = require('../models/listing');
 const Review = require('../models/review');
 const Location = require('../models/location');
+const User = require('../models/user');
 const { Client } = require("@googlemaps/google-maps-services-js");
 
 const mapsClient = new Client({}); 
@@ -54,16 +55,21 @@ async function index(req, res) {
 }
 
 async function show(req, res) {
-    const listing = await Listing.findById(req.params.id);
+    let listing = await Listing.findById(req.params.id);
+    console.log(listing);
+    const reviews = await Review.find({ listingId: req.params.id });
+    const users = await User.find({});
+    listing = addReviewData([listing], reviews, users);
     res.render('listings/show', {
         title: 'Listing',
-        listing
+        listing: listing[0],
+        reviews
     });
 }
 
 function newListing(req, res) {
     res.render('listings/new', {
-        title: 'Add Listing',
+        title: 'Contribute',
         errorMessages: []
     });
 }
@@ -118,9 +124,18 @@ function sortListings(listings, sortBy) {
     }
 }
 
-function addReviewData(listings, reviews) {
+function addReviewData(listings, reviews, users = null) {
     listings.forEach((listing) => {
         const listingReviews = reviews.filter(review => review.listingId == listing.id);
+        if (users) {
+            listingReviews.forEach((review) => {
+                const reviewAuthor = users.find(user => user._id === review.userId);
+                console.log('review:', review);
+                // console.log('user:', users);
+                console.log('reviewAuthor:', reviewAuthor);
+                // review.author = reviewAuthor.name;
+            });
+        }
         const listingRating = listingReviews.reduce((acc, review) => acc + review.rating, 0) / listingReviews.length;
         listing.rating = (!!listingRating) ? listingRating.toFixed(1) : 'No reviews yet';
         listing.numReviews = listingReviews.length;
