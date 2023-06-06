@@ -8,7 +8,8 @@ module.exports = {
     listings,
     reviews,
     deleteListing,
-    deleteReview
+    deleteReview,
+    updateListing
 }
 
 function index(req, res) {
@@ -92,6 +93,21 @@ async function deleteReview(req, res) {
     try {
         await Review.findByIdAndDelete(req.params.id);
         res.redirect(`/${req.body.returnTo}`);
+    } catch (err) {
+        console.log(err);
+        res.redirect('/listings');
+    }
+}
+
+async function updateListing(req, res) {
+    try {
+        const listing = await Listing.findById(req.params.id);
+        listing.title = req.body.title;
+        listing.subtitle = req.body.subtitle;
+        listing.description = req.body.description;
+        listing.phoneNumber = req.body.phoneNumber;
+        await listing.save();
+        res.redirect(`/listings/${listing._id}`);
     } catch (err) {
         console.log(err);
         res.redirect('/listings');

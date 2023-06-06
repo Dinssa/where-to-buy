@@ -10,7 +10,9 @@ module.exports = {
     index,
     show,
     new: newListing,
-    create
+    create,
+    edit: editListing,
+    update: updateListing
 };
 
 async function index(req, res) {
@@ -56,7 +58,7 @@ async function index(req, res) {
 
 async function show(req, res) {
     let listing = await Listing.findById(req.params.id);
-    console.log(listing);
+    // console.log(listing);
     const reviews = await Review.find({ listingId: req.params.id });
     const users = await User.find({});
     listing = addReviewData([listing], reviews, users);
@@ -72,6 +74,27 @@ function newListing(req, res) {
         title: 'Contribute',
         errorMessages: []
     });
+}
+
+async function editListing(req, res) {
+    const listing = await Listing.findById(req.params.id);
+    // console.log(req.params.id);
+    // console.log(listing);
+    res.render('listings/edit', {
+        title: 'Edit Listing',
+        listing
+    });
+}
+
+async function updateListing(req, res) {
+    const listing = await Listing.findById(req.params.id);
+    console.log(req.body);
+    listing.title = req.body.title;
+    listing.subtitle = req.body.subtitle;
+    listing.description = req.body.description;
+    listing.phoneNumber = req.body.phoneNumber;
+    await listing.save();
+    res.redirect(`/listings/${listing._id}`);
 }
 
 async function create(req, res) {
@@ -130,9 +153,9 @@ function addReviewData(listings, reviews, users = null) {
         if (users) {
             listingReviews.forEach((review) => {
                 const reviewAuthor = users.find(user => user._id === review.userId);
-                console.log('review:', review);
+                // console.log('review:', review);
                 // console.log('user:', users);
-                console.log('reviewAuthor:', reviewAuthor);
+                // console.log('reviewAuthor:', reviewAuthor);
                 // review.author = reviewAuthor.name;
             });
         }

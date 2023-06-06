@@ -11,6 +11,10 @@ router.get('/:id', listingsCtrl.show); // GET /listings/:id
 
 router.post('/', listingsCtrl.create); // POST /listings
 
+router.get('/edit/:id', listingsCtrl.edit); // GET /listings/edit/:id
+
+router.put('/:id', listingsCtrl.update); // PUT /listings/:id
+
 module.exports = router;
 
 function requireLogin(req, res, next) {
