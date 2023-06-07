@@ -62,7 +62,6 @@ async function show(req, res) {
     if (res.locals.user) {
         isBookmarked = res.locals.user.bookmarks.includes(listing.id);
     }
-    console.log(isBookmarked);
     const reviews = await Review.find({ listingId: req.params.id });
     const users = await User.find({});
     listing = addReviewData([listing], reviews, users);
@@ -95,7 +94,6 @@ async function editListing(req, res) {
             listing
         });
     } catch (err) {
-        console.log(err);
         res.redirect('/'); // 404
     }
 }
@@ -116,14 +114,11 @@ async function updateListing(req, res) {
         await listing.save();
         res.redirect(`/listings/${listing._id}`);
     } catch (err) {
-        console.log(err);
         res.redirect('/'); // 404
     }
 }
 
 async function create(req, res) {
-    console.log(req.body);
-
     const products = [];
     const operationHours = [];
 
@@ -153,7 +148,6 @@ async function create(req, res) {
         await location.save();
         res.redirect(`/listings/${listing._id}`);
     } catch (err) {
-        console.log(err);
         res.redirect('/listings/new');
     }
 }
@@ -177,10 +171,6 @@ function addReviewData(listings, reviews, users = null) {
         if (users) {
             listingReviews.forEach((review) => {
                 const reviewAuthor = users.find(user => user._id === review.userId);
-                // console.log('review:', review);
-                // console.log('user:', users);
-                // console.log('reviewAuthor:', reviewAuthor);
-                // review.author = reviewAuthor.name;
             });
         }
         const listingRating = listingReviews.reduce((acc, review) => acc + review.rating, 0) / listingReviews.length;
@@ -224,6 +214,6 @@ async function geocodeAddress(address){
         const { lat, lng } = response.data.results[0].geometry.location;
         return { lat, lng };
     } catch (err) {
-        console.log(err);
+        return null;
     }
 }

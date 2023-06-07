@@ -34,7 +34,6 @@ async function bookmarks(req, res) {
             listings
         });
     } catch (err) {
-        console.log(err);
         res.redirect('/account');
     }
 }
@@ -55,7 +54,6 @@ async function listings(req, res) {
             listings
         });
     } catch (err) {
-        console.log(err);
         res.redirect('/account');
     }
 }
@@ -73,7 +71,6 @@ async function reviews(req, res) {
             reviews
         });
     } catch (err) {
-        console.log(err);
         res.redirect('/account');
     }
 }
@@ -90,7 +87,6 @@ async function deleteListing(req, res) {
         await Listing.findByIdAndDelete(req.params.id);
         res.redirect(`/${req.body.returnTo}`);
     } catch (err) {
-        console.log(err);
         res.redirect('/listings');
     }
 }
@@ -107,7 +103,6 @@ async function deleteReview(req, res) {
         await Review.findByIdAndDelete(req.params.id);
         res.redirect(`/${req.body.returnTo}`);
     } catch (err) {
-        console.log(err);
         res.redirect('/listings');
     }
 }

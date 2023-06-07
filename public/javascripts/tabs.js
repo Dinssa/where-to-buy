@@ -50,8 +50,4 @@ function updateButtons() {
         formNextBtn.classList.remove('hidden');
         submitBtn.classList.add('hidden');
     }
-
-    console.log(currentTab);
-    console.log(tabs.length);
-    console.log(currentTab === tabs.length - 1)
 }
