@@ -113,3 +113,7 @@ article.search:hover{
 .controls.hidden, .step.hidden{
   visibility: hidden;
 }
+
+.bookmarked:hover{
+  color: #c83645 !important;
+}

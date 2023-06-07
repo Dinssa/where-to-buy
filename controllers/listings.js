@@ -58,14 +58,19 @@ async function index(req, res) {
 
 async function show(req, res) {
     let listing = await Listing.findById(req.params.id);
-    // console.log(listing);
+    let isBookmarked = null;
+    if (res.locals.user) {
+        isBookmarked = res.locals.user.bookmarks.includes(listing.id);
+    }
+    console.log(isBookmarked);
     const reviews = await Review.find({ listingId: req.params.id });
     const users = await User.find({});
     listing = addReviewData([listing], reviews, users);
     res.render('listings/show', {
-        title: 'Listing',
+        title: listing[0].title,
         listing: listing[0],
-        reviews
+        reviews,
+        isBookmarked
     });
 }
 
