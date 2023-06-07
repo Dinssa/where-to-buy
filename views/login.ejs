@@ -41,4 +41,42 @@
     </section>
 </div>
 
+<div class="floating-div bg-dark text-white p-2" style="position: fixed; bottom: 140px; right: 10px; z-index: 9999; border-radius: 2%;">
+    <p>Demo Users</p>
+    <ul class="list-group">
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+            Kelvin_Franecki84@gmail.com
+            <button class="btn btn-sm btn-primary copy-btn ms-2" data-text="Kelvin_Franecki84@gmail.com">Copy</button>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+            Kristi.Kemmer49@gmail.com
+            <button class="btn btn-sm btn-primary copy-btn ms-2" data-text="Kristi.Kemmer49@gmail.com">Copy</button>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+            Lillian.Kling@hotmail.com
+            <button class="btn btn-sm btn-primary copy-btn ms-2" data-text="Lillian.Kling@hotmail.com">Copy</button>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+            Natalie_Jaskolski@gmail.com
+            <button class="btn btn-sm btn-primary copy-btn ms-2" data-text="Natalie_Jaskolski@gmail.com">Copy</button>
+        </li>
+    </ul>
+</div>
+
+<script>
+    const copyBtns = document.querySelectorAll('.copy-btn');
+  
+    copyBtns.forEach((btn) => {
+      btn.addEventListener('click', (e) => {
+        const text = e.target.getAttribute('data-text');
+        const tempInput = document.createElement('input');
+        tempInput.setAttribute('value', text);
+        document.body.appendChild(tempInput);
+        tempInput.select();
+        document.execCommand('copy');
+        document.body.removeChild(tempInput);
+      });
+    });
+  </script>
+
 <%- include('./partials/footer') %>
