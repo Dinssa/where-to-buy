@@ -7,6 +7,7 @@ const methodOveride= require('method-override');
 
 const session = require('express-session');
 const passport = require('passport');
+const MongoStore = require('connect-mongo');
 
 require('dotenv').config();
 require('./config/database');
@@ -33,7 +34,9 @@ app.use(methodOveride('_method'));
 app.use(session({
   secret: process.env.SECRET,
   resave: false,
-  saveUninitialized: true
+  saveUninitialized: true,
+  store: MongoStore.create({ mongoUrl: process.env.SESSION_DATABASE_URL }),
+  cookie: { maxAge: 1000 * 60 * 60 * 24 } // 1 day max cookie age
 }));
 
 app.use(passport.initialize());
