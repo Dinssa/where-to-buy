@@ -67,8 +67,10 @@
                         </div>
                     </div> -->
                     <div class="row">
-                        <div class="row  mx-1">
-                            <h3 class="row title text-primary fw-bold text-break"><%= listing.title %></h3>
+                        <div class="row mx-1">
+                            <div class="col">
+                                <h3 class="row title text-primary fw-bold text-break fs-2"><%= listing.title %></h3>
+                            </div>
                             <div class="col-auto">
                                 <% if (isBookmarked) { %>
                                     <a href="#" class="fs-2 text-primary bookmarked"><i class="bi bi-bookmark-fill"></i></a>
@@ -78,7 +80,7 @@
                             </div>                            
                         </div>
                         <div class="row mx-1">
-                            <p class="row fst-italic "><%= listing.subtitle %></p>
+                            <p class="row fst-italic fs-5"><%= listing.subtitle %></p>
                         </div>
                     </div>
                     <!-- <div class="row">
@@ -103,13 +105,13 @@
                             </div>
                         </div>
                     </div> -->
-                    <div class="row">
-                        <span class="fw-bold mx-1">Description</span>
-                        <span class="mx-1"><%= listing.description %></p>
+                    <div class="row my-3">
+                        <span class="fw-bold mx-1 fs-6">Description</span>
+                        <span class="mx-1 fs-6"><%= listing.description %></p>
                     </div>
                     <div class="row">
                         <div class="col-auto d-flex flex-column">
-                            <div class="row fw-bold mx-1">Details</div>
+                            <div class="row fw-bold mx-1 fs-6">Details</div>
                             <div class="row mx-1 p-1">
                                 <div class="col-auto">
                                     <i class="bi bi-telephone-fill"></i>
@@ -189,12 +191,14 @@
                         </div>
                         <div class="col border border-secondary">
                             <div class="row bg-primary text-white py-2">
-                                <div class="col title">
+                                <div class="col title fs-6">
                                     Reviews
                                 </div>
                                 <div class="col d-flex justify-content-end">
-                                    <span class="me-1">Average Rating</span>
-                                    <span>
+                                    <% if (listing.numReviews !== 0) {  %>
+                                        <span class="me-2">Average Rating</span>
+                                    <% } %>
+                                    <span class="stars me-2">
                                         <% for (let i = 0; i < Math.floor(listing.stars); i++) { %>
                                             <i class="bi bi-star-fill"></i>
                                         <% } %>
@@ -204,10 +208,9 @@
                                         <% for (let i = 0; i < 5 - Math.ceil(listing.stars); i++) { %>
                                         <i class="bi bi-star"></i>
                                         <% } %>
-                                        
-                                        <% if (listing.numReviews === 0) {  %>
-                                            No Reviews
-                                        <% } else { %>
+                                    </span>
+                                    <span class=""></span>
+                                        <% if (listing.numReviews !== 0) {  %>
                                             <%= listing.rating  %> (<%= listing.numReviews  %>)
                                         <% } %>
                                     </span>
@@ -248,8 +251,7 @@
                                 <% if (reviews.length === 0) { %>
                                     <div class="col">
                                         <div class="d-flex justify-content-center">
-                                            <div class="my-5">No Reviews Yet</div>
-                                            <!-- <% user.id %> -->
+                                            <div class="my-5 fs-4">No Reviews Yet</div>
                                         </div>
                                     </div>
                                 <%  } %>
@@ -257,8 +259,8 @@
                                 <% reviews.forEach(function (review) { %>
                                     <article class="review container border-bottom">
                                         <div class="row">
-                                            <div class="col-auto pt-2">
-                                                <span>
+                                            <div class="col-auto pt-2 fs-6">
+                                                <span class="stars-dark">
                                                     <% for (let i = 0; i < Math.floor(review.rating); i++) { %>
                                                         <i class="bi bi-star-fill"></i>
                                                     <% } %>
@@ -273,9 +275,9 @@
                                             </div>
                                         </div>
                                         <div class="row">
-                                            <p class="col"><%= review.comment %></p>
+                                            <p class="col fs-5 mt-1"><%= review.comment %></p>
                                         </div>
-                                        <div class="row">
+                                        <div class="row mb-2">
                                             <div class="col-auto">
                                                 <%= review.helpedUsersIds.length %> helped
                                             </div>
@@ -283,7 +285,7 @@
                                             <div class="col-auto">
                                                 <span class="fw-bold">Helpful?</span>
                                                 <span class="helpful">Yes</span>
-                                                <span class="helpful">No</span>
+                                                <span class="not-helpful">No</span>
                                             </div>
                                         </div>
                                     </article>

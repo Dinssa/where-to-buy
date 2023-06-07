@@ -18,7 +18,7 @@
 
 <div class="listings container">
     <div class="listings-search row row-auto m-3 align-items-center">
-        <h5 class="col-auto">Search results for...</h5>
+        <h5 class="col-auto fs-2">Search results for...</h5>
         <form class="col" action="/listings" method="GET">
             <div class="input-group searchbar">
                 <input type="text" name="search" class="form-control" style="min-width: 200px;" value="<%= searchQuery %>">
@@ -48,7 +48,7 @@
                 <% listings.forEach(function (listing){ %>
                     <a href="/listings/<%= listing.id %>" class="link-underline link-underline-opacity-0 text-decoration-none text-black">
                         <article class="search container d-flex flex-row">
-                            <div class="col-2 d-flex flex-column justify-content-center align-items-center me-4 p-1 text-center">
+                            <div class="col-2 d-flex flex-column justify-content-center align-items-center me-4 p-1 text-center fs-6">
                                 <% if (listing.distance) {  %>
                                     <p>
                                         <%= listing.distance %> km
@@ -73,8 +73,8 @@
                                 </p>
                             </div>
                             <div class="col d-flex flex-column justify-content-center align-items-start p-1 me-4 text-left">
-                                <h3 class="row title text-primary fw-bold text-break"><%= listing.title %></h3>
-                                <p class="row fst-italic"><%= listing.subtitle %></p>
+                                <h3 class="row title text-primary fw-bold text-break fs-2"><%= listing.title %></h3>
+                                <p class="row fst-italic fs-5"><%= listing.subtitle %></p>
                                 <!-- <p class="row">Products: X, Y, X</p> -->
                             </div>
                             <div class="col-auto d-flex flex-row justify-content-center align-items-center p-1 text-center">
