@@ -19,13 +19,13 @@
                 <% reviews.forEach(function (review){ %>
                     <article class="review container d-flex flex-row my-2">
                         <div class="col-auto d-flex flex-column justify-content-center align-items-center me-4 p-1 text-muted">
-                            <div class="d-flex flex-row">
+                            <div class="d-flex flex-row fs-6">
                                 <span class="text-end" style="min-width: 10px;"><%= review.helpedUsersIds.length %></span>
                                 <span>&nbsp;helped</span>
                             </div>
                         </div>
                         <div class="col d-flex flex-column justify-content-center p-1 me-4 text-center">
-                            <em>"<%= review.comment %>"</em>
+                            <em class="fs-5">"<%= review.comment %>"</em>
                             <div>
                                 on <a href="/listings/<%= review.listingId %>" class="link-info link-underline link-underline-opacity-0"><%= review.listingTitle %></a>
                             </div>

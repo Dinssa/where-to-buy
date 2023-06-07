@@ -117,3 +117,23 @@ article.search:hover{
 .bookmarked:hover{
   color: #c83645 !important;
 }
+
+.stars{
+  color: #f5ea6d;
+}
+
+.stars-dark{
+  color: #e7ce43;
+}
+
+.helpful:hover{
+  color: #5DFF8A ;
+  cursor: pointer;
+  user-select: none;
+}
+
+.not-helpful:hover{
+  color: rgb(218, 53, 53);
+  cursor: pointer;
+  user-select: none;
+}
