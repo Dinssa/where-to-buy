@@ -57,7 +57,7 @@ Optionally:
 - Expose its own API where it returns data resources as JSON.
 
 # Planning
-## Entity Relationship Diagrams
+## Entity Relationship Diagram
 [![ERD](https://onedrive.live.com/embed?resid=3AAE4294F4C93984%216545&authkey=%21AM-Q_gGxmuZNZn4&width=900)](#)
 
 The ERD consists of 4 main models:
