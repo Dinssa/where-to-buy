@@ -29,7 +29,7 @@ Check out this site deployed on <a href="https://fly.io/">Fly.io</a>
 1. Clone the project repository: `git clone https://github.com/Dinssa/where-to-buy.git`
 2. Open a terminal or command prompt and inside the project directory run the command `npm install` to install project dependencies
 3. Create a .env file in the project root directory and add the following environment variables:
-```
+```dotenv
 SECRET=<your_session_secret>  
 GOOGLE_CLIENT_ID=<your_google_client_id>  
 GOOGLE_CLIENT_SECRET=<your_google_client_secret>  
