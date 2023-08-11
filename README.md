@@ -67,27 +67,27 @@ The ERD consists of 4 main models:
 - Review
 
 ## Mockups
-[![Home](https://onedrive.live.com/embed?resid=3AAE4294F4C93984%216546&authkey=%21AIEEcl0eneNRV3g&width=900)](#)
+[![Home](https://onedrive.live.com/embed?resid=3AAE4294F4C93984%216546&authkey=%21AIEEcl0eneNRV3g&width=900)](#)  
 The home page features a prominent search box where users can type in their desired location or use their current location (with their permission) to find nearby stores.
 
-[![Home, logged in](https://onedrive.live.com/embed?resid=3AAE4294F4C93984%216547&authkey=%21ACpU15OJ66Fznrs&width=900)](#)
+[![Home, logged in](https://onedrive.live.com/embed?resid=3AAE4294F4C93984%216547&authkey=%21ACpU15OJ66Fznrs&width=900)](#)  
 By logging in, the user can access a few personalised views where they can manage their own listings and reviews (edit or delete them as needed). They can also update their account details, such as their profile image, username and login settings.
 
-[![Search results](https://onedrive.live.com/embed?resid=3AAE4294F4C93984%216548&authkey=%21ABNCrC1qJt_Vn6U&width=900)](#)
+[![Search results](https://onedrive.live.com/embed?resid=3AAE4294F4C93984%216548&authkey=%21ABNCrC1qJt_Vn6U&width=900)](#)  
 This view shows the search results in a clear and concise way. Users can still modify their query in the search box at the top or use the filter menu on the side to narrow down the results. The main list displays the essential details from the listings: title, subtitle, product titles, average rating and distance from the search location.
 
-[![Single listing page](https://onedrive.live.com/embed?resid=3AAE4294F4C93984%216551&authkey=%21AGBrFovx82gaZJA&width=900)](#)
+[![Single listing page](https://onedrive.live.com/embed?resid=3AAE4294F4C93984%216551&authkey=%21AGBrFovx82gaZJA&width=900)](#)  
 This view shows a single listing page with all the important information.  It’s quite packed but there was plenty of whitespace once I began building it in HTML. The listing includes the following elements: title, subtitle, product list, description, contact details and reviews. A nice stretch goal was to implement the map view to the left. Users can report listings that are outdated or inappropriate with the “report” button. Each listing also has a verified status that indicates the owner of the listing has confirmed their ownership of the store through a manual process.
 
 The following views are part of a single page, where users can switch between each tab using “Next” and “Back” buttons. With any good multi step form that I’ve ever used there has always been a progres bar and I’ve included one below to show the completion status. The goal of these pages is to make the form less daunting and more manageable by dividing it into small sections, with some extra information at the bottom to guide the user through each step.
 
-[![New listing page start](https://onedrive.live.com/embed?resid=3AAE4294F4C93984%216549&authkey=%21AOmu9Q4REjizXXs&width=900)](#)
+[![New listing page start](https://onedrive.live.com/embed?resid=3AAE4294F4C93984%216549&authkey=%21AOmu9Q4REjizXXs&width=900)](#)  
 A simple Yes or No question to start with. This is the first step, prior to verification, to mark a listing as owned by a user.
 
-[![New listing page to add a location](https://onedrive.live.com/embed?resid=3AAE4294F4C93984%216550&authkey=%21AD5MMN2iNGz0mA0&width=900)](#)
+[![New listing page to add a location](https://onedrive.live.com/embed?resid=3AAE4294F4C93984%216550&authkey=%21AD5MMN2iNGz0mA0&width=900)](#)  
 The site asks the user to enter the location of the store.
 
-[![New listing page for details](https://onedrive.live.com/embed?resid=3AAE4294F4C93984%216552&authkey=%21AN2t3zcRWwxd6D0&width=900)](#)
+[![New listing page for details](https://onedrive.live.com/embed?resid=3AAE4294F4C93984%216552&authkey=%21AN2t3zcRWwxd6D0&width=900)](#)  
 Each listing needs a few details to be filled in, so the rest of the form pages look similar to this mockup with a scrollable area and multiple input boxes. The site collects details for the listing location (store name, subtitle and description); product details (one or more variations); contact details and operating hours.
 
 # Build Process
