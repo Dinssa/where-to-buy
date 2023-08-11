@@ -14,7 +14,7 @@ This website…
 
 # Live Peview
 <p align="center">
-Check out this game deployed on <a href="https://fly.io/">Fly.io</a>
+Check out this site deployed on <a href="https://fly.io/">Fly.io</a>
 <br>
   <a href="https://where-to-buy.fly.dev/" target="_blank"><strong>https://where-to-buy.fly.dev/</strong></a>
 </p>
