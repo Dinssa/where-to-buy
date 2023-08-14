@@ -12,7 +12,7 @@ This website…
 - All data, including listings, reviews, user accounts and user sessions are in MongoDB, a NoSQL and flexible document database. 
 - Appearance is enhanced by Bootstrap SASS with a few customised variables.
 
-# Live Peview
+# Live Preview
 <p align="center">
 Check out this site deployed on <a href="https://fly.io/">Fly.io</a>
 <br>
